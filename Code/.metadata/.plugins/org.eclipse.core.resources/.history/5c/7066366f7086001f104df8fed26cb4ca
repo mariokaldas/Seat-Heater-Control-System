@@ -1,0 +1,143 @@
+/**********************************************************************************************************
+ *
+ * Module: Application
+ *
+ * File Name: APP.h
+ *
+ * Description: Header file contain the prototype of any task or function used in the application
+ *
+ * Author: Mario kaldas
+ *
+ **********************************************************************************************************/
+
+#ifndef APP_APP_H_
+#define APP_APP_H_
+
+
+/****************************************************************************
+ *                                  Includes
+ * ************************************************************************/
+
+/* FreeRTOS includes */
+
+#include"FreeRTOS.h"
+#include"task.h"
+#include"semphr.h"
+#include"queue.h"
+
+
+/* Application includes */
+
+#include"HAL/LED.h"
+#include"HAL/pushbutton.h"
+#include"HAL/Temperature_sensor.h"
+
+/* other includes */
+
+#include"MCAL/UART0.h"
+#include"MCAL/GPTM.h"
+
+/***************************************************************************
+ *                                Definitions
+ *************************************************************************** */
+
+#define QUEUE_CURRENT_TEMP_SIZE     5u
+#define QUEUE_DESIRED_TEMP_SIZE     5u
+#define QUEUE_HEATING_LEVEL_SIZE    5u
+
+#define DRIVER                      0u
+#define PASSENGER                   1u
+
+/***************************************************************************
+ *                             Types declaration
+ *************************************************************************** */
+
+typedef struct{
+
+    /* If instance = 0 then it's driver, if instance = 1 then it's passenger  */
+    uint8 instance;
+
+    const uint8* name;
+}info;
+
+typedef enum{
+
+    HEATER_OFF,
+    HEATER_LOW,
+    HEATER_MEDIUM,
+    HEATER_HIGH
+
+}heatingMode_Type;
+
+typedef enum{
+
+    LEVEL0=HEATER_OFF,
+    LEVEL1=25,
+    LEVEL2=30,
+    LEVEL3=35
+
+}desiredTemp_Type;
+
+/****************************************************************************
+ *                              Global variables
+ * ************************************************************************/
+
+/* This mutex for the mutual exclusion between Driver and passenger of ADC in any monitoring task */
+extern SemaphoreHandle_t ADC_mutex;
+
+/* This mutex for the mutual exclusion between Driver and passenger of UART in any monitoring task */
+extern SemaphoreHandle_t UART_mutex;
+
+/* The following two queues refer to the temperature set by both driver and passenger by the push buttons */
+extern QueueHandle_t     Q_desiredTempDriver;
+extern QueueHandle_t     Q_desiredTempPassenger;
+
+/* The following two queues refer to the temperature measured by temperature sensor in both seats */
+extern QueueHandle_t     Q_currentTempDriver;
+extern QueueHandle_t     Q_currentTempPassenger;
+
+/* Each of the following queue sets combine both the current and desired temperature (queue set for driver and other for passenger) */
+extern QueueSetHandle_t QS_DriverTemp;
+extern QueueSetHandle_t QS_PassengerTemp;
+
+/* Heater handler pass heating level of driver seat through this queue to be monitored */
+extern QueueHandle_t     Q_heatingLevelDriver;
+
+/* Heater handler pass heating level of passenger seat through this queue to be monitored */
+extern QueueHandle_t     Q_heatingLevelPassenger;
+
+/* These structures contain the type of the seat (Driver or Passenger) and instance number to be used in the task (0>driver, 1>passenger) */
+extern info driver;
+extern info passenger;
+
+/****************************************************************************
+ *                              Hooks prototype
+ * ************************************************************************/
+
+/* Stack overflow hook */
+void vApplicationStackOverflowHook( TaskHandle_t xTask,char *pcTaskName );
+
+/* Heap overflow hook */
+void vApplicationMallocFailedHook( void );
+
+/****************************************************************************
+ *                             Functions prototype
+ * ************************************************************************/
+void vSetupHardware( void );
+
+/****************************************************************************
+ *                               Tasks prototype
+ * ************************************************************************/
+
+void vInitialValuesTask( void * pvParameters );
+void vTemperatureMonitoringTask( void * pvParameters );
+void vButtonMonitoringTask( void * pvParameters );
+void vHeatingLevelMonitoringTask( void * pvParameters );
+void vHeaterHandlerTask( void * pvParameters );
+void vTemperatureSensorFailureTask( void * pvParameters );
+
+
+
+
+
+#endif /* APP_APP_H_ */

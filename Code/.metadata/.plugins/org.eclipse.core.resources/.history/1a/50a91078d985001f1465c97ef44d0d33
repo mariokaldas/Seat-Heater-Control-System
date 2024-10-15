@@ -1,0 +1,133 @@
+
+
+/**
+ * main.c
+ */
+
+/****************************************************************************
+ *                                  Includes
+ * ************************************************************************/
+
+/* Application file include */
+
+#include"APP/APP.h"
+
+
+int main(void)
+{
+
+    /* Initialize all components */
+    vSetupHardware();
+
+    while(xTaskCreate( vTemperatureMonitoringTask, /* Task function implementation */
+                 "Temperature monitoring",   /* Task name (Debugging purposes) */
+                 256,                        /* Stack size of the task : 256 words >> 1024 bytes */
+                 (void*)(&driver),           /* Passed parameter to refer driver instance */
+                 1,                          /* Priority */
+                 NULL                        /* Task handle to refer the Task */
+    ) == pdFAIL);
+
+    while(xTaskCreate( vTemperatureMonitoringTask, /* Task function implementation */
+                 "Temperature monitoring",   /* Task name (Debugging purposes) */
+                 256,                        /* Stack size of the task : 256 words >> 1024 bytes */
+                 (void*)(&passenger),        /* Passed parameter to refer passenger instance */
+                 1,                          /* Priority */
+                 NULL                        /* Task handle to refer the Task */
+    ) == pdFAIL);
+
+
+    while(xTaskCreate( vButtonMonitoringTask,/* Task function implementation */
+                 "Button monitoring",        /* Task name (Debugging purposes) */
+                 256,                        /* Stack size of the task : 256 words >> 1024 bytes */
+                 (void*)(&driver),           /* Passed parameter to refer driver instance */
+                 1,                          /* Priority */
+                 NULL                        /* Task handle to refer the Task */
+    )== pdFAIL);
+
+    while(xTaskCreate( vButtonMonitoringTask,/* Task function implementation */
+                 "Button monitoring",        /* Task name (Debugging purposes) */
+                 256,                        /* Stack size of the task : 256 words >> 1024 bytes */
+                 (void*)(&passenger),        /* Passed parameter to refer passenger instance */
+                 1,                          /* Priority */
+                 NULL                        /* Task handle to refer the Task */
+    ) == pdFAIL);
+
+    while(xTaskCreate( vHeatingLevelMonitoringTask,/* Task function implementation */
+                 "Heating level monitoring", /* Task name (Debugging purposes) */
+                 256,                        /* Stack size of the task : 256 words >> 1024 bytes */
+                 (void*)"Driver",            /* Passed parameter to refer Driver instance */
+                 1,                          /* Priority */
+                 NULL                        /* Task handle to refer the Task */
+    ) == pdFAIL);
+
+    while(xTaskCreate( vHeatingLevelMonitoringTask,/* Task function implementation */
+                 "Heating level monitoring", /* Task name (Debugging purposes) */
+                 256,                        /* Stack size of the task : 256 words >> 1024 bytes */
+                 (void*)"Passenger",         /* Passed parameter to refer Driver instance */
+                 1,                          /* Priority */
+                 NULL                        /* Task handle to refer the Task */
+    ) == pdFAIL);
+
+    while(xTaskCreate( vHeaterHandlerTask,         /* Task function implementation */
+                 "Heating handler",          /* Task name (Debugging purposes) */
+                 256,                        /* Stack size of the task : 256 words >> 1024 bytes */
+                 (void*)"Driver",            /* Passed parameter to refer Driver instance */
+                 2,                          /* Priority */
+                 NULL                        /* Task handle to refer the Task */
+    ) == pdFAIL);
+
+    while(xTaskCreate( vHeaterHandlerTask,         /* Task function implementation */
+                 "Heating handler",          /* Task name (Debugging purposes) */
+                 256,                        /* Stack size of the task : 256 words >> 1024 bytes */
+                 (void*)"Passenger",         /* Passed parameter to refer Driver instance */
+                 2,                          /* Priority */
+                 NULL                        /* Task handle to refer the Task */
+    ) == pdFAIL);
+
+    while(xTaskCreate( vTemperatureSensorFailureTask, /* Task function implementation */
+                 "Temperature sensor failure",  /* Task name (Debugging purposes) */
+                 256,                           /* Stack size of the task : 256 words >> 1024 bytes */
+                 (void*)"Driver",               /* Passed parameter to refer Driver instance */
+                 3,                             /* Priority */
+                 NULL                           /* Task handle to refer the Task */
+    ) == pdFAIL);
+
+    while(xTaskCreate( vTemperatureSensorFailureTask, /* Task function implementation */
+                 "Temperature sensor failure",  /* Task name (Debugging purposes) */
+                 256,                           /* Stack size of the task : 256 words >> 1024 bytes */
+                 (void*)"Passenger",            /* Passed parameter to refer Driver instance */
+                 3,                             /* Priority */
+                 NULL                           /* Task handle to refer the Task */
+    ) == pdFAIL);
+
+
+    /* This mutex for the mutual exclusion between Driver and passenger of ADC and UART in the temperature monitoring task */
+    TEMP_mutex = xSemaphoreCreateMutex();
+
+    /*This mutex for the mutual exclusion between Driver and passenger of the UART in the push button monitoring task */
+    PB_mutex = xSemaphoreCreateMutex();
+
+    /* Temperature sensor pass current temperature through this queue */
+    currentTemp = xQueueCreate(QUEUE_CURRENT_TEMP_SIZE,sizeof(uint8));
+
+    /* Push button pass desired temperature through this queue */
+    desiredTemp = xQueueCreate(QUEUE_DESIRED_TEMP_SIZE,sizeof(uint8));
+
+    /* This queue set contain current and desired temperature to be passed to heater handler */
+    temperatureSet = xQueueCreateSet(QUEUE_CURRENT_TEMP_SIZE+QUEUE_DESIRED_TEMP_SIZE);
+
+    /* Add the previous two queues to a queue set */
+    xQueueAddToSet((QueueSetMemberHandle_t)currentTemp, temperatureSet);
+    xQueueAddToSet((QueueSetMemberHandle_t)desiredTemp, temperatureSet);
+
+    /* Heater handler pass heating level through this queue */
+    heatingLevel = xQueueCreate(QUEUE_HEATING_LEVEL_SIZE,sizeof(uint8));
+
+    vTaskStartScheduler();
+
+    /* Should never reach here!  If you do then there was not enough heap
+    available for the idle task to be created. */
+
+    while(1){}
+
+}

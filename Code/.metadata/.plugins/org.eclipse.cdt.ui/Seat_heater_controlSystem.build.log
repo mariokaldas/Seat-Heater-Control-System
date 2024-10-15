@@ -1,0 +1,65 @@
+
+**** Build of configuration Debug for project Seat_heater_controlSystem ****
+
+"D:\\programes\\Code composer\\installation files\\ccs\\utils\\bin\\gmake" -k -j 16 all -O 
+ 
+Building file: "../main.c"
+Invoking: Arm Compiler
+"D:/programes/Code composer/installation files/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --include_path="D:/Embedded systems/M.T Advanced embedded diploma/RTOS/FInal project/Code/Seat_heater_controlSystem" --include_path="D:/programes/Code composer/installation files/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.c"
+Finished building: "../main.c"
+ 
+Building file: "../HAL/LED.c"
+Invoking: Arm Compiler
+"D:/programes/Code composer/installation files/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --include_path="D:/Embedded systems/M.T Advanced embedded diploma/RTOS/FInal project/Code/Seat_heater_controlSystem" --include_path="D:/programes/Code composer/installation files/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi --preproc_with_compile --preproc_dependency="HAL/LED.d_raw" --obj_directory="HAL"  "../HAL/LED.c"
+Finished building: "../HAL/LED.c"
+ 
+Building file: "../HAL/pushbutton.c"
+Invoking: Arm Compiler
+"D:/programes/Code composer/installation files/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --include_path="D:/Embedded systems/M.T Advanced embedded diploma/RTOS/FInal project/Code/Seat_heater_controlSystem" --include_path="D:/programes/Code composer/installation files/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi --preproc_with_compile --preproc_dependency="HAL/pushbutton.d_raw" --obj_directory="HAL"  "../HAL/pushbutton.c"
+Finished building: "../HAL/pushbutton.c"
+ 
+Building file: "../HAL/LM35.c"
+Invoking: Arm Compiler
+"D:/programes/Code composer/installation files/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --include_path="D:/Embedded systems/M.T Advanced embedded diploma/RTOS/FInal project/Code/Seat_heater_controlSystem" --include_path="D:/programes/Code composer/installation files/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi --preproc_with_compile --preproc_dependency="HAL/LM35.d_raw" --obj_directory="HAL"  "../HAL/LM35.c"
+Finished building: "../HAL/LM35.c"
+ 
+Building file: "../MCAL/ADC.c"
+Invoking: Arm Compiler
+"D:/programes/Code composer/installation files/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --include_path="D:/Embedded systems/M.T Advanced embedded diploma/RTOS/FInal project/Code/Seat_heater_controlSystem" --include_path="D:/programes/Code composer/installation files/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi --preproc_with_compile --preproc_dependency="MCAL/ADC.d_raw" --obj_directory="MCAL"  "../MCAL/ADC.c"
+Finished building: "../MCAL/ADC.c"
+ 
+Building file: "../MCAL/GPTM.c"
+Invoking: Arm Compiler
+"D:/programes/Code composer/installation files/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --include_path="D:/Embedded systems/M.T Advanced embedded diploma/RTOS/FInal project/Code/Seat_heater_controlSystem" --include_path="D:/programes/Code composer/installation files/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi --preproc_with_compile --preproc_dependency="MCAL/GPTM.d_raw" --obj_directory="MCAL"  "../MCAL/GPTM.c"
+Finished building: "../MCAL/GPTM.c"
+ 
+Building file: "../MCAL/delay.c"
+Invoking: Arm Compiler
+"D:/programes/Code composer/installation files/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --include_path="D:/Embedded systems/M.T Advanced embedded diploma/RTOS/FInal project/Code/Seat_heater_controlSystem" --include_path="D:/programes/Code composer/installation files/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi --preproc_with_compile --preproc_dependency="MCAL/delay.d_raw" --obj_directory="MCAL"  "../MCAL/delay.c"
+Finished building: "../MCAL/delay.c"
+ 
+Building file: "../MCAL/NVIC.c"
+Invoking: Arm Compiler
+"D:/programes/Code composer/installation files/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --include_path="D:/Embedded systems/M.T Advanced embedded diploma/RTOS/FInal project/Code/Seat_heater_controlSystem" --include_path="D:/programes/Code composer/installation files/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi --preproc_with_compile --preproc_dependency="MCAL/NVIC.d_raw" --obj_directory="MCAL"  "../MCAL/NVIC.c"
+Finished building: "../MCAL/NVIC.c"
+ 
+Building file: "../MCAL/UART0.c"
+Invoking: Arm Compiler
+"D:/programes/Code composer/installation files/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --include_path="D:/Embedded systems/M.T Advanced embedded diploma/RTOS/FInal project/Code/Seat_heater_controlSystem" --include_path="D:/programes/Code composer/installation files/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi --preproc_with_compile --preproc_dependency="MCAL/UART0.d_raw" --obj_directory="MCAL"  "../MCAL/UART0.c"
+Finished building: "../MCAL/UART0.c"
+ 
+Building file: "../MCAL/GPIO.c"
+Invoking: Arm Compiler
+"D:/programes/Code composer/installation files/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --include_path="D:/Embedded systems/M.T Advanced embedded diploma/RTOS/FInal project/Code/Seat_heater_controlSystem" --include_path="D:/programes/Code composer/installation files/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi --preproc_with_compile --preproc_dependency="MCAL/GPIO.d_raw" --obj_directory="MCAL"  "../MCAL/GPIO.c"
+Finished building: "../MCAL/GPIO.c"
+ 
+Building target: "Seat_heater_controlSystem.out"
+Invoking: Arm Linker
+"D:/programes/Code composer/installation files/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"Seat_heater_controlSystem.map" --heap_size=0 --stack_size=512 -i"D:/programes/Code composer/installation files/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/lib" -i"D:/programes/Code composer/installation files/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="Seat_heater_controlSystem_linkInfo.xml" --rom_model -o "Seat_heater_controlSystem.out" "./main.obj" "./HAL/LED.obj" "./HAL/LM35.obj" "./HAL/pushbutton.obj" "./MCAL/ADC.obj" "./MCAL/GPIO.obj" "./MCAL/GPTM.obj" "./MCAL/NVIC.obj" "./MCAL/UART0.obj" "./MCAL/delay.obj"  -llibc.a 
+<Linking>
+warning #10247-D: creating output section ".text" without a SECTIONS specification
+warning #10247-D: creating output section ".stack" without a SECTIONS specification
+Finished building target: "Seat_heater_controlSystem.out"
+ 
+
+**** Build Finished ****

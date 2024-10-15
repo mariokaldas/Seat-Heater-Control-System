@@ -1,0 +1,8 @@
+
+**** Build of configuration Debug for project SeatHeater_sysCtl ****
+
+"D:\\programes\\Code composer\\installation files\\ccs\\utils\\bin\\gmake" -k -j 16 all -O 
+ 
+gmake[1]: 'SeatHeater_sysCtl.out' is up to date.
+
+**** Build Finished ****
